@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/1.css' %}" />
+    <title>HOME PAGE</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>EMPLOYEES LIST</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>s.no</th>
+            <th>Full Name</th>
+            <th>Designation</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for emp in employees %}
+          <tr>
+            <th>{{forloop.counter}}</th>
+            <!-- {{emp.id}} will not give correct order if we delete the middle one -->
+            <td>
+              <a href="{% url 'employee_detail' emp.id %}"
+                >{{ emp.first_name }} {{emp.last_name}}
+              </a>
+            </td>
+            <td>{{ emp.designation}}</td>
+            <td>{{ emp.phone_number}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
